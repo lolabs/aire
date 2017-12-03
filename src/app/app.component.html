@@ -4,18 +4,24 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<button (click)="goToCurrentLocation()">GO</button>
-<button (click)="getAirInformation()">Air Info</button>
-
-<!-- this creates a google map on the page with the given lat/lng from -->
-<!-- the component as the initial center of the map: -->
-<!--<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>-->
+<div class="btn-container">
+  <button type="button" class="btn btn-success" (click)="getAirInformation()">My Air Info</button>
+  <button type="button" class="btn btn-warning" (click)="showPollution()">Mark Area</button>
+</div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <div #map id="map"></div>
-<div *ngIf="airInfo">
-  <p>{{airInfo.city.name}}</p>
-  <h3> AQI ( Air Quality Index)</h3>
-  <p>{{airInfo.aqi}}</p>
+<div *ngIf="airInfo" class="row info-header">
+  <div class="col col-4 col-md-4 offset-4 offset-md-4 col-xs-12">
+    <h2 class="text-center">AQI <br>(Air Quality Index)</h2>
+  </div>
+</div>
+<div *ngIf="airInfo" class="row city">
+  <div class="col col-4 col-md-4 offset-4 offset-md-4 col-xs-12">
+    <h2 class="text-center" >{{airInfo.city.name}}</h2>
+  </div>
+</div>
+<div *ngIf="airInfo" class="row aqi" [className]="getColor(airInfo.aqi)">
+  <div class="col col-4 col-md-4 offset-4 offset-md-4 col-xs-12">
+    <h1 class="text-center">{{airInfo.aqi}}</h1>
+  </div>
 </div>

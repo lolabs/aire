@@ -1,3 +1,58 @@
 #map {
 	height: 500px;
 }
+
+/* 0 - 50 */
+.excellent{
+	background-color: #009966;
+	color: white;
+}
+
+/* 51-100 */
+.moderate{
+	background-color: #ffde33;
+}
+
+/* 101-150 */
+.dangerous-sg{
+	background-color: #ff9933;
+	color: white;
+}
+
+/* 151-200 */
+.dangerous{
+	background-color: #cc0033;
+	color: white;
+}
+
+/* 201 - 300 */
+.very-dangerous{
+	background-color: #660099;
+	color: white;
+}
+/* 300 + */
+.high-risk{
+	background-color: #7e0023;
+	color: white;
+}
+
+.info-header{
+	background-color: #e3e3e3;
+	color: black;
+	border: 1px solid black;
+	padding: 20px;
+	font-size: 2.5vw;
+}
+.city{
+
+}
+.aqi{
+	padding: 20px;
+	font-size: 90px;
+}
+.btn-container {
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-right: 14px;
+}

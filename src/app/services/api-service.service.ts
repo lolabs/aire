@@ -15,9 +15,7 @@ export class ApiService {
     }
 
 	get(lat, lng): Observable<any> {
-	  this.spinnerService.show();
 		return this.http.get(this.apiURL + "geo:" + lat + ";" + lng + "/?token=" + ApiService.TOKEN).map((res) => {
-			this.spinnerService.hide();
             return res;
 		});
 	}

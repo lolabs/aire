@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {ApiService} from "./services/api-service.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
           apiKey: 'AIzaSyAFWpnhOaN39nj2IWcxtYGCYjs6CHX5wNk'
       }),
       Ng4LoadingSpinnerModule.forRoot(),
-      HttpClientModule
+      HttpClientModule,
+      NgbModule.forRoot()
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
