@@ -1,10 +1,22 @@
-# AireApp
+# Aire App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+Angular Tool that retrieves the AQI (Air Quality Index) based on the current geolocation of the user.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Examples: 
+
+![alt text](https://github.com/lolabs/aire/blob/master/screenshots/img_0.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/aire/blob/master/screenshots/img_1.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/aire/blob/master/screenshots/img_2.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/aire/blob/master/screenshots/img_3.png?raw=true "Img 1")
+
+
 
 ## Code scaffolding
 
