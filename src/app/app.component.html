@@ -5,6 +5,7 @@
   </h1>
 </div>
 <button (click)="goToCurrentLocation()">GO</button>
+<button (click)="getAirInformation()">Air Info</button>
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
@@ -13,3 +14,8 @@
 </agm-map>-->
 <ng4-loading-spinner> </ng4-loading-spinner>
 <div #map id="map"></div>
+<div *ngIf="airInfo">
+  <p>{{airInfo.city.name}}</p>
+  <h3> AQI ( Air Quality Index)</h3>
+  <p>{{airInfo.aqi}}</p>
+</div>

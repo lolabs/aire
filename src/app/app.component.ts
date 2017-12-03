@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {ApiService} from "./services/api-service.service";
 
 declare var google;
 @Component({
@@ -16,13 +17,16 @@ export class AppComponent implements OnInit {
 	map: any;
 	mapOptions: any;
 	latLng: any;
+	coordinates: any;
+	airInfo: any;
     @ViewChild('map') mapElement: ElementRef;
-	constructor(private spinnerService: Ng4LoadingSpinnerService) {
+	constructor(private spinnerService: Ng4LoadingSpinnerService, public apiService: ApiService) {
 
 	}
     ngOnInit() {
 		this.map = new google.maps.Map(document.getElementById('map'));
 		console.log(this.map);
+		this.setCoordinates();
 		this.loadMap();
     }
     loadMap() {
@@ -43,14 +47,18 @@ export class AppComponent implements OnInit {
         let coordinates = resp.coords;
         return coordinates;
       });
-
     }
 
-    goToCurrentLocation() {
-		this.spinnerService.show();
+    setCoordinates() {
 		let geolocation = navigator.geolocation.getCurrentPosition((resp) => {
-			let coordinates = resp.coords;
-			this.latLng = new google.maps.LatLng(coordinates.latitude, coordinates.longitude);
+			this.coordinates = resp.coords;
+		});
+	}
+
+    goToCurrentLocation() {
+		let geolocation = navigator.geolocation.getCurrentPosition((resp) => {
+			this.coordinates = resp.coords;
+			this.latLng = new google.maps.LatLng(this.coordinates.latitude, this.coordinates.longitude);
 			this.mapOptions = {
 				center: this.latLng,
 				zoom: 15,
@@ -62,19 +70,7 @@ export class AppComponent implements OnInit {
 				title: 'Current location',
 				label: 'A'
 			});
-			this.spinnerService.hide();
 			marker.setMap(this.map);
-			/*let cityCircle = new google.maps.Circle({
-				strokeColor: '#FF0000',
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: '#FF0000',
-				fillOpacity: 0.35,
-				map: this.map,
-				center: latLng,
-				radius: 200
-				// Math.sqrt(citymap[city].population) * 100
-			});*/
 		});
     }
 
@@ -88,8 +84,22 @@ export class AppComponent implements OnInit {
 			map: this.map,
 			center: this.latLng,
 			radius: 200
-			// Math.sqrt(citymap[city].population) * 100
 		});
+	}
+
+	getAirInformation() {
+		this.goToCurrentLocation();
+		if (!this.coordinates) {
+			this.setCoordinates();
+		}
+		this.apiService.get(this.coordinates.latitude, this.coordinates.longitude).subscribe((res) => {
+			console.log(res.data);
+			this.airInfo = res.data;
+			this.spinnerService.hide();
+		}, (err) => {
+			this.spinnerService.hide();
+		});
+		 this.spinnerService.hide();
 	}
 
 }
