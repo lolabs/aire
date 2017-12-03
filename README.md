@@ -1,6 +1,6 @@
 # Aire App
 
-Angular Tool that retrieves the AQI (Air Quality Index) based on the current geolocation of the user.
+Angular Tool that retrieves the AQI (Air Quality Index) based on user's current location.
 Using Google Maps and AQI API - http://aqicn.org/json-api/doc/ .
 
 ## Development server
